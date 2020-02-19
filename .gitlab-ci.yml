@@ -1,14 +1,9 @@
 # Select an image from https://hub.docker.com/_/php/.
 image: php:7.3
 
-
 stages:
   - test
-  - analysis 
-  - build
-  - integration
-  
-
+   
 # Select what we should cache
 cache:
   paths:
@@ -25,18 +20,6 @@ before_script:
 - curl -sS https://getcomposer.org/installer | php
 # Install all project dependencies
 - php composer.phar install
-
-services:
-
-variables:
-
-
-# We test PHP7 with MySQL, but we allow it to fail
-test:phpunit:  
-  script:
-  - vendor/bin/phpunit --version
-  #- vendor/bin/phpunit --configuration phpunit.xml --coverage-text
-  allow_failure: true
 
 test:behat:    
   script:
