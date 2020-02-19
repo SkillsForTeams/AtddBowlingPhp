@@ -1,0 +1,13 @@
+{
+    "require": {
+        "behat/behat": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {"Bowling\\": "src/"},
+        "classmap": [
+            "src/"
+        ]
+
+    }
+    
+}

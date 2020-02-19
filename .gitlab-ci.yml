@@ -1,0 +1,44 @@
+# Select an image from https://hub.docker.com/_/php/.
+image: php:7.3
+
+
+stages:
+  - test
+  - analysis 
+  - build
+  - integration
+  
+
+# Select what we should cache
+cache:
+  paths:
+  - vendor/
+
+before_script:
+# Install git, the php image doesn't have installed
+- apt-get update -yqq
+- apt-get install git -yqq
+
+# Install mysql driver
+- docker-php-ext-install pdo_mysql
+# Install composer
+- curl -sS https://getcomposer.org/installer | php
+# Install all project dependencies
+- php composer.phar install
+
+services:
+
+variables:
+
+
+# We test PHP7 with MySQL, but we allow it to fail
+test:phpunit:  
+  script:
+  - vendor/bin/phpunit --version
+  #- vendor/bin/phpunit --configuration phpunit.xml --coverage-text
+  allow_failure: true
+
+test:behat:    
+  script:
+  - vendor/bin/behat --tags '~@pending'
+  allow_failure: true
