@@ -3,6 +3,7 @@
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Tester\Exception\PendingException;
 
 
 /**
@@ -32,7 +33,7 @@ class FeatureContext implements Context
      */
     public function iBowlAGame($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
     {
-       
+        throw new PendingException("Make it work here");
  
     }
 
@@ -41,6 +42,7 @@ class FeatureContext implements Context
      */
     public function theGameResultWillBe($expectedResult)
     {
-       
+        throw new PendingException("Make it work here");
+ 
     }
 }
