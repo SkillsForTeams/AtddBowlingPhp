@@ -1,9 +1,9 @@
 # Select an image from https://hub.docker.com/_/php/.
-image: php:7.3
+image: php:7.4
 
 stages:
   - test
-   
+
 # Select what we should cache
 cache:
   paths:
@@ -21,7 +21,7 @@ before_script:
 # Install all project dependencies
 - php composer.phar install
 
-test:behat:    
+test:behat:
   script:
   - vendor/bin/behat --tags '~@pending'
   allow_failure: true

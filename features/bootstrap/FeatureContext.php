@@ -16,9 +16,12 @@ use Behat\Behat\Tester\Exception\PendingException;
  */
 class FeatureContext implements Context
 {
+    /**
+     * @var \Bowling\Game
+     */
     private $bowlingGame;
-   
- 
+
+
 
     /**
      * @Given I play a :rounds rounds Bowling game
@@ -33,8 +36,16 @@ class FeatureContext implements Context
      */
     public function iBowlAGame($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
     {
-        throw new PendingException("Make it work here");
- 
+        $this->bowlingGame->addFrame($arg1);
+        $this->bowlingGame->addFrame($arg2);
+        $this->bowlingGame->addFrame($arg3);
+        $this->bowlingGame->addFrame($arg4);
+        $this->bowlingGame->addFrame($arg5);
+        $this->bowlingGame->addFrame($arg6);
+        $this->bowlingGame->addFrame($arg7);
+        $this->bowlingGame->addFrame($arg8);
+        $this->bowlingGame->addFrame($arg9);
+        $this->bowlingGame->addFrame($arg10);
     }
 
     /**
@@ -42,7 +53,10 @@ class FeatureContext implements Context
      */
     public function theGameResultWillBe($expectedResult)
     {
-        throw new PendingException("Make it work here");
- 
+        $score = $this->bowlingGame->getScore();
+        if ($score !== (int) $expectedResult) {
+            throw new \Exception('Expected score to be ' . $expectedResult . ' bot got ' . $score);
+        }
+
     }
 }
