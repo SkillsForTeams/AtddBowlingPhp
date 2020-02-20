@@ -1,7 +1,7 @@
 Feature:
 ScoreBoard showing the results of our bowling game with spares
 
-@pending
+
 Scenario Outline: Calculate Game Score for Bowling Game with spares
   Given I play a 10 rounds Bowling game
   When I bowl a game <game>
