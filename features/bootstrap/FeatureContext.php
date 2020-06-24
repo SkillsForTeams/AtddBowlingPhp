@@ -17,4 +17,29 @@ use PHPUnit\Framework\Assert;
 class FeatureContext implements Context
 {
     
+     /**
+     * @Given i play a :arg1 rounds Bowling game
+     */
+    public function iPlayARoundsBowlingGame($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When i bowl a game :arg1 :arg2 :arg3 :arg4 :arg5 :arg6 :arg7 :arg8 :arg9 :arg10
+     */
+    public function iBowlAGame($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the game result will be :arg1
+     */
+    public function theGameResultWillBe($arg1)
+    {
+        throw new PendingException();
+    }
+
+    
 }
