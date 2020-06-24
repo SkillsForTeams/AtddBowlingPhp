@@ -16,30 +16,47 @@ use PHPUnit\Framework\Assert;
  */
 class FeatureContext implements Context
 {
-    
-     /**
-     * @Given i play a :arg1 rounds Bowling game
+    /**
+     * @var \Bowling\Game
      */
-    public function iPlayARoundsBowlingGame($arg1)
+    private $bowlingGame;
+
+
+
+    /**
+     * @Given I play a :rounds rounds Bowling game
+     */
+    public function iPlayARoundsBowlingGame($rounds)
     {
-        throw new PendingException();
+        $this->bowlingGame = new Bowling\Game($rounds);
     }
 
     /**
-     * @When i bowl a game :arg1 :arg2 :arg3 :arg4 :arg5 :arg6 :arg7 :arg8 :arg9 :arg10
+     * @When I bowl a game :arg1 :arg2 :arg3 :arg4 :arg5 :arg6 :arg7 :arg8 :arg9 :arg10
      */
-    public function iBowlAGame($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
+    public function iBowlAGame($round1, $round2, $round3, $round4, $round5, $round6, $round7, $round8, $round9, $round10)
     {
-        throw new PendingException();
+        $this->bowlingGame->addFrame($round1);
+        $this->bowlingGame->addFrame($round2);
+        $this->bowlingGame->addFrame($round3);
+        $this->bowlingGame->addFrame($round4);
+        $this->bowlingGame->addFrame($round5);
+        $this->bowlingGame->addFrame($round6);
+        $this->bowlingGame->addFrame($round7);
+        $this->bowlingGame->addFrame($round8);
+        $this->bowlingGame->addFrame($round9);
+        $this->bowlingGame->addFrame($round10);
     }
 
     /**
      * @Then the game result will be :arg1
      */
-    public function theGameResultWillBe($arg1)
+    public function theGameResultWillBe($expectedResult)
     {
-        throw new PendingException();
-    }
-
+        $actualResult = $this->bowlingGame->getScore();
+        Assert::assertEquals($expectedResult, $actualResult, "Expected the Game result to be correct"); 
+  
     
+
+    }
 }
