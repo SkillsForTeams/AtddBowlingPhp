@@ -2,25 +2,20 @@
 image: php:7.4
 
 stages:
-  - build_image
+  - build
   - test
-
-
 
 services:
   - docker:dind
 
-
 before_script:
   - docker info
-
 
 cache:
   paths:
   - vendor/
 
-
-build_image:
+build:image:
   image: docker:latest
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
