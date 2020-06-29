@@ -18,6 +18,10 @@ cache:
 build:image:
   stage: build
   image: docker:latest
+  only:
+    changes:
+      - Dockerfiles/**
+      
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f Dockerfiles/testrunner/Dockerfile .
