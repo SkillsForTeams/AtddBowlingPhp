@@ -16,6 +16,7 @@ cache:
   - vendor/
 
 build:image:
+  stage: build
   image: docker:latest
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
@@ -23,6 +24,7 @@ build:image:
     - docker push $CI_REGISTRY_IMAGE:testrunner
 
 test:behat:
+  stage: build
   image: $CI_REGISTRY_IMAGE:testrunner
   before_script:
     - composer install
