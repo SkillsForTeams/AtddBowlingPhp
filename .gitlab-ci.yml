@@ -22,7 +22,7 @@ build_image:
     
     
 test:behat:
- image: $CI_REGISTRY_IMAGE:testrunner
+  image: $CI_REGISTRY_IMAGE:testrunner
   before_script:
     - composer install
   script:
