@@ -7,13 +7,6 @@ stages:
 
 before_script:
   - docker info
-
-build_image:
-  script:
-    - docker build -t my-docker-image .
-    - docker run my-docker-image /script/to/run/tests
-
-
 # Select what we should cache
 cache:
   paths:
@@ -23,16 +16,14 @@ cache:
 build_image:
   image: php:7.4
   script:
-     script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f dockerfiles/testrunner/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:testrunner
     
-    
-  
-
 test:behat:
  image: $CI_REGISTRY_IMAGE:testrunner
+  before_script:
+    - composer install
   script:
-  - vendor/bin/behat --tags '~@pending'
+    - vendor/bin/behat --tags '~@pending'
   allow_failure: true
