@@ -34,4 +34,5 @@ test:behat:
     - composer install
   script:
     - vendor/bin/behat --tags '~@pending'
+    - ls
   allow_failure: true
