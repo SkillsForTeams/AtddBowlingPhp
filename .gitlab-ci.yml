@@ -3,6 +3,7 @@ image: php:7.4
 
 stages:
   - build
+  - prepare
   - test
 
 services:
@@ -30,6 +31,21 @@ build:image:
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f Dockerfiles/testrunner/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:testrunner
 
+test:composerinstall
+  stage: build
+  only:
+    changes:
+      - composer.json
+  script: 
+   composer install
+  artifacts:
+    paths:
+      - vendor
+      
+
+
+
+
 test:behat:
   stage: test
   image: $CI_REGISTRY_IMAGE:testrunner
@@ -39,3 +55,5 @@ test:behat:
     - vendor/bin/behat --tags '~@pending'
     - ls
   allow_failure: true
+  dependencies:
+    - test:composerinstall
