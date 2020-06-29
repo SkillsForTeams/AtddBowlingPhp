@@ -22,3 +22,4 @@ With all Scenarios
 # gitlab ci
 you can use gitlab ci to use execute tests on gitlab
 building docker image as testrunner
+cached /vendors directory
