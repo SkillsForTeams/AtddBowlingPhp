@@ -21,3 +21,4 @@ With all Scenarios
 
 # gitlab ci
 you can use gitlab ci to use execute tests on gitlab
+artifacts version
