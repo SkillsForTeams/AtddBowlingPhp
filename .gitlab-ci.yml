@@ -5,9 +5,16 @@ stages:
   - build_image
   - test
 
+
+
+services:
+  - docker:dind
+
+
 before_script:
   - docker info
-# Select what we should cache
+
+
 cache:
   paths:
   - vendor/
@@ -27,7 +34,3 @@ test:behat:
   script:
     - vendor/bin/behat --tags '~@pending'
   allow_failure: true
-
-
-services:
-  - docker:dind
