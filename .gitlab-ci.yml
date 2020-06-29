@@ -21,7 +21,7 @@ cache:
 
 
 build_image:
-  image: php:7.4
+  image: docker:latest
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f dockerfiles/testrunner/Dockerfile .
