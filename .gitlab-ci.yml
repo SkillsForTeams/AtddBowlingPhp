@@ -31,7 +31,7 @@ build:image:
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f Dockerfiles/testrunner/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:testrunner
 
-test:composerinstall
+test:composerinstall:
   stage: build
   only:
     changes:
@@ -42,8 +42,6 @@ test:composerinstall
     paths:
       - vendor
       
-
-
 
 
 test:behat:
