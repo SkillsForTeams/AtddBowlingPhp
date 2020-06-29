@@ -20,6 +20,7 @@ build_image:
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f dockerfiles/testrunner/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:testrunner
     
+    
 test:behat:
  image: $CI_REGISTRY_IMAGE:testrunner
   before_script:
