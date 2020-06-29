@@ -29,7 +29,7 @@ build:image:
     - docker push $CI_REGISTRY_IMAGE:testrunner
 
 test:behat:
-  stage: build
+  stage: test
   image: $CI_REGISTRY_IMAGE:testrunner
   before_script:
     - composer install
