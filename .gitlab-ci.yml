@@ -19,11 +19,7 @@ build_image:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:testrunner -f dockerfiles/testrunner/Dockerfile .
     - docker push $CI_REGISTRY_IMAGE:testrunner
-    
-  services:
-  - docker:dind
-  
-  
+
 test:behat:
   image: $CI_REGISTRY_IMAGE:testrunner
   before_script:
@@ -31,3 +27,7 @@ test:behat:
   script:
     - vendor/bin/behat --tags '~@pending'
   allow_failure: true
+
+
+services:
+  - docker:dind
