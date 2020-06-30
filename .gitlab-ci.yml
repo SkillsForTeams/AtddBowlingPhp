@@ -9,8 +9,6 @@ stages:
 services:
   - docker:dind
 
-before_script:
-  - docker info
 
 
 cache:
