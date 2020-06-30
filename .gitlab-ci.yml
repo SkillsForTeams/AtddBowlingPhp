@@ -37,7 +37,7 @@ test:composerinstall:
     changes:
       - composer.json
   script: 
-   composer install
+    - composer install
   artifacts:
     paths:
       - vendor
@@ -47,8 +47,7 @@ test:composerinstall:
 test:behat:
   stage: test
   image: $CI_REGISTRY_IMAGE:testrunner
-  before_script:
-    - composer install
+
   script:
     - vendor/bin/behat --tags '~@pending'
     - ls
